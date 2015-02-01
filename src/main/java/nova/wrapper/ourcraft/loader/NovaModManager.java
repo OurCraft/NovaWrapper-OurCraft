@@ -62,7 +62,7 @@ public class NovaModManager implements IAddonManager<NovaMod>
 
     @Override public Constructor getAddonConstructor(Class<?> clazz) throws NoSuchMethodException
     {
-        return clazz.getConstructor(BlockManager.class, ItemManager.class, RenderManager.class);
+        return null;
     }
 
     @Override public Object[] getConstructorArgs()
