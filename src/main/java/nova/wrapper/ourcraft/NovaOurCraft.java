@@ -5,13 +5,10 @@ import nova.core.game.Game;
 import nova.core.loader.NovaMod;
 import nova.internal.NovaLauncher;
 import nova.wrapper.ourcraft.forward.BlockWrapperRegistry;
-import nova.wrapper.ourcraft.loader.NovaModManager;
 import org.craft.OurClassLoader;
-import org.craft.blocks.Block;
 import org.craft.modding.AddonsLoader;
-import org.craft.modding.IAddonManager;
 import org.craft.modding.Mod;
-import org.craft.modding.OurModEventHandler;
+import org.craft.modding.ModEventHandler;
 import org.craft.modding.events.state.ModInitEvent;
 import org.craft.modding.events.state.ModPostInitEvent;
 import org.craft.modding.events.state.ModPreInitEvent;
@@ -29,7 +26,7 @@ public class NovaOurCraft
 
     private Logger         logger;
 
-    @OurModEventHandler
+    @ModEventHandler
     public void onPreInit(ModPreInitEvent evt)
     {
 
@@ -56,13 +53,13 @@ public class NovaOurCraft
         return set;
     }
 
-    @OurModEventHandler
+    @ModEventHandler
     public void onPostInit(ModPostInitEvent evt)
     {
         launcher.postInit();
     }
 
-    @OurModEventHandler
+    @ModEventHandler
     public void onInit(ModInitEvent evt)
     {
         launcher.init();
