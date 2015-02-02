@@ -1,0 +1,6 @@
+[submodule "OurCraft"]
+	path = OurCraft
+	url = https://github.com/OurCraft/OurCraft.git
+[submodule "NovaCore"]
+	path = NovaCore
+	url = https://github.com/NOVAAPI/NovaCore.git

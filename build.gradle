@@ -1,0 +1,58 @@
+apply plugin: 'java'
+//apply plugin: 'checkstyle'
+apply plugin: 'maven'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+
+version = "0.0.1"
+group = "nova.wrapper.ourcraft"
+
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+compileJava {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+    options.encoding = 'UTF-8'
+}
+
+
+dependencies {
+    compile project('NovaCore')
+    compile project('OurCraft')
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+// ------------------------------- RUN CONFIG ------------------------------- //
+
+task runClient(type: JavaExec, dependsOn: 'classes') {
+    main = project('OurCraft').clientProdMainClass
+    classpath = configurations.runtime
+    classpath += sourceSets.main.runtimeClasspath
+    jvmArgs = ['-XX:+UseConcMarkSweepGC', '-XX:+CMSClassUnloadingEnabled', '-Djava.system.class.loader=org.craft.OurClassLoader']
+    standardInput = System.in
+}
+
+task runClientDev(type: JavaExec, dependsOn: 'classes') {
+    main = project('OurCraft').clientDevMainClass
+    classpath = configurations.runtime
+    classpath += sourceSets.main.runtimeClasspath
+    jvmArgs = ['-XX:+UseConcMarkSweepGC', '-XX:+CMSClassUnloadingEnabled', '-Djava.system.class.loader=org.craft.OurClassLoader']
+    standardInput = System.in
+}
+
+task runServer(type: JavaExec, dependsOn: 'classes') {
+    main = project('OurCraft').serverProdMainClass
+    classpath = configurations.runtime
+    classpath += sourceSets.main.runtimeClasspath
+    jvmArgs = ['-XX:+UseConcMarkSweepGC', '-XX:+CMSClassUnloadingEnabled', '-Djava.system.class.loader=org.craft.OurClassLoader']
+    standardInput = System.in
+}
