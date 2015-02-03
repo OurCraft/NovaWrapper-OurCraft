@@ -3,7 +3,9 @@ notifications:
   email: false
 install: true
 jdk: oraclejdk8
-script: gradle build
+script: 
+  - git submodule update --init --recursive
+  - gradle build
 cache:
   directories:
     - ~/.gradle
